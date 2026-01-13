@@ -10,7 +10,7 @@ import { getTopicById } from '@/data/topics';
 import { getExercisesByTopic } from '@/data/exercises';
 import { mapResultToQuality } from '@/lib/srs/algorithm';
 import { cn } from '@/lib/utils';
-import { Exercise, ExerciseType } from '@/types';
+import { Exercise } from '@/types';
 
 // ==========================================
 // PAGINA DE EJERCICIOS DE UN TEMA
@@ -41,7 +41,7 @@ export default function TopicExercisesPage() {
 
   const currentExercise = exercises[currentIndex];
 
-  const handleExerciseComplete = useCallback((isCorrect: boolean, answer: string, timeMs: number) => {
+  const handleExerciseComplete = useCallback((isCorrect: boolean, _answer: string, timeMs: number) => {
     if (!currentExercise) return;
 
     const quality = mapResultToQuality(isCorrect, timeMs);
@@ -254,7 +254,7 @@ function ExerciseRenderer({ exercise, onComplete }: ExerciseRendererProps) {
         <Card>
           <CardContent className="text-center py-8">
             <p className="text-gray-500">
-              Tipo de ejercicio no soportado: {exercise.type}
+              Tipo de ejercicio no soportado: {(exercise as Exercise).type}
             </p>
           </CardContent>
         </Card>

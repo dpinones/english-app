@@ -35,7 +35,7 @@ export function TransformSentence({ exercise, onComplete }: TransformSentencePro
       case 'question': return 'PREGUNTA';
       case 'negative': return 'NEGATIVA';
       case 'affirmative': return 'AFIRMATIVA';
-      default: return content.targetType.toUpperCase();
+      default: return (content.targetType as string).toUpperCase();
     }
   };
 
