@@ -90,7 +90,10 @@ export function SVOBuilder({ exercise, onComplete }: SVOBuilderProps) {
 
   // Verificar respuesta
   const checkAnswer = useCallback(() => {
-    const userAnswer = `${slots.subject} ${slots.verb} ${slots.object}`.trim();
+    const userAnswer = [slots.subject, slots.verb, slots.object]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
     const correct = userAnswer.toLowerCase() === content.correctSentence.toLowerCase();
     const timeMs = Date.now() - startTime;
 
@@ -103,8 +106,13 @@ export function SVOBuilder({ exercise, onComplete }: SVOBuilderProps) {
     }, 3000);
   }, [slots, content.correctSentence, startTime, onComplete]);
 
-  // Verificar si se puede enviar
-  const canSubmit = slots.subject && slots.verb && slots.object;
+  // Verificar si hay algo para mostrar
+  const hasContent = slots.subject || slots.verb || slots.object;
+
+  // Construir la oración visible
+  const visibleSentence = [slots.subject, slots.verb, slots.object]
+    .filter(Boolean)
+    .join(' ');
 
   // Reset
   const handleReset = useCallback(() => {
@@ -169,13 +177,13 @@ export function SVOBuilder({ exercise, onComplete }: SVOBuilderProps) {
 
       {/* Oracion formada */}
       <div className="text-center py-4 px-6 bg-gray-50 dark:bg-gray-800 rounded-lg min-h-[60px] flex items-center justify-center">
-        {canSubmit ? (
+        {hasContent ? (
           <p className={cn(
             "text-xl font-medium",
             showFeedback && isCorrect && "text-green-600",
             showFeedback && !isCorrect && "text-red-600"
           )}>
-            "{slots.subject} {slots.verb} {slots.object}"
+            "{visibleSentence}"
           </p>
         ) : (
           <p className="text-gray-400 italic">
