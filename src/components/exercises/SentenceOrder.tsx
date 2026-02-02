@@ -68,7 +68,7 @@ export function SentenceOrder({ exercise, onComplete }: SentenceOrderProps) {
 
     setTimeout(() => {
       onComplete(correct, userAnswer, timeMs);
-    }, 1500);
+    }, 3000);
   }, [selectedWords, content.correctOrder, startTime, onComplete]);
 
   return (
@@ -177,7 +177,7 @@ export function SentenceOrder({ exercise, onComplete }: SentenceOrderProps) {
         <Button
           variant="primary"
           onClick={checkAnswer}
-          disabled={selectedWords.length === 0 || showFeedback}
+          disabled={showFeedback}
         >
           Verificar
         </Button>

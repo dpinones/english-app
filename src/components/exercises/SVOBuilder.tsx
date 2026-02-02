@@ -100,7 +100,7 @@ export function SVOBuilder({ exercise, onComplete }: SVOBuilderProps) {
     // Delay para mostrar feedback antes de completar
     setTimeout(() => {
       onComplete(correct, userAnswer, timeMs);
-    }, 1500);
+    }, 3000);
   }, [slots, content.correctSentence, startTime, onComplete]);
 
   // Verificar si se puede enviar
@@ -251,7 +251,7 @@ export function SVOBuilder({ exercise, onComplete }: SVOBuilderProps) {
         <Button
           variant="primary"
           onClick={checkAnswer}
-          disabled={!canSubmit || showFeedback}
+          disabled={showFeedback}
         >
           Verificar
         </Button>

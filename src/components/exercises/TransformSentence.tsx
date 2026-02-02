@@ -66,7 +66,7 @@ export function TransformSentence({ exercise, onComplete }: TransformSentencePro
 
     setTimeout(() => {
       onComplete(correct, userAnswer, timeMs);
-    }, 1500);
+    }, 3000);
   }, [userAnswer, content.acceptedAnswers, startTime, onComplete]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -156,7 +156,7 @@ export function TransformSentence({ exercise, onComplete }: TransformSentencePro
         <Button
           variant="primary"
           onClick={checkAnswer}
-          disabled={!userAnswer.trim() || showFeedback}
+          disabled={showFeedback}
         >
           Verificar
         </Button>

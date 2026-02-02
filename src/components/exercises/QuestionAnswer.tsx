@@ -60,7 +60,7 @@ export function QuestionAnswer({ exercise, onComplete }: QuestionAnswerProps) {
 
     setTimeout(() => {
       onComplete(correct, userAnswer, timeMs);
-    }, 1500);
+    }, 3000);
   }, [userAnswer, content.acceptedAnswers, startTime, onComplete]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -184,7 +184,7 @@ export function QuestionAnswer({ exercise, onComplete }: QuestionAnswerProps) {
         <Button
           variant="primary"
           onClick={checkAnswer}
-          disabled={!userAnswer.trim() || showFeedback}
+          disabled={showFeedback}
         >
           Verificar
         </Button>

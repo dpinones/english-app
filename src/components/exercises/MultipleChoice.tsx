@@ -45,7 +45,7 @@ export function MultipleChoice({ exercise, onComplete }: MultipleChoiceProps) {
 
     setTimeout(() => {
       onComplete(correct, selectedOption, timeMs);
-    }, 1500);
+    }, 3000);
   }, [selectedOption, content.correctAnswer, startTime, onComplete]);
 
   return (
@@ -158,7 +158,7 @@ export function MultipleChoice({ exercise, onComplete }: MultipleChoiceProps) {
         <Button
           variant="primary"
           onClick={checkAnswer}
-          disabled={!selectedOption || showFeedback}
+          disabled={showFeedback}
         >
           Verificar
         </Button>
